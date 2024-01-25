@@ -12,24 +12,24 @@ class UserCommandHandler {
     public function handleCreateUserCommand($userData) {
         $user = new User();
         $user->setUsername($userData['username']);
-        $user->setPassword($userData['password']);
+        $user->setPassword($userData['password']); 
         $user->setBirthdate($userData['birthdate']);
-        $this->repository->addUser($user);
+        $this->commandRepository->addUser($user); 
     }
-
+    
     public function handleUpdateUserCommand($id, $userData) {
         $user = $this->queryRepository->getUserById($id);
         if ($user) {
             $user->setUsername($userData['username']);
-            $user->setPassword($userData['password']);
+            $user->setPassword($userData['password']); 
             $user->setBirthdate($userData['birthdate']);
-            $this->commandRepository->updateUser($user);
+            $this->commandRepository->updateUser($user); 
         } else {
         }
     }
-
+    
     public function handleDeleteUserCommand($id) {
-        $this->repository->deleteUser($id);
+        $this->commandRepository->deleteUser($id); 
     }
     
     
