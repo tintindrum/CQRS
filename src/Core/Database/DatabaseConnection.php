@@ -15,11 +15,14 @@ class DatabaseConnection {
         if (self::$instance === null) {
             try {
                 $dsn = "mysql:host=your_host;dbname=your_db;charset=utf8";
+                $username = 'your_username';
+                $password = 'your_password';
+                
                 $options = [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 ];
-                self::$instance = new PDO($dsn, 'your_username', 'your_password', $options);
+                self::$instance = new PDO($dsn, $username, $password, $options);
             } catch (PDOException $e) {
                 throw $e;
             }
