@@ -1,12 +1,10 @@
 <?php 
 
 class UserCommandHandler {
-    private $commandRepository;
-    private $queryRepository;
+    private $repository;
 
-    public function __construct(UserCommandRepository $commandRepository, UserQueryRepository $queryRepository) {
-        $this->commandRepository = $commandRepository;
-        $this->queryRepository = $queryRepository;
+    public function __construct(UserRepository $repository) {
+        $this->repository = $repository;
     }
 
     public function handleCreateUserCommand($userData) {
@@ -18,12 +16,12 @@ class UserCommandHandler {
     }
 
     public function handleUpdateUserCommand($id, $userData) {
-        $user = $this->queryRepository->getUserById($id);
+        $user = $this->repository->getUserById($id);
         if ($user) {
             $user->setUsername($userData['username']);
             $user->setPassword($userData['password']);
             $user->setBirthdate($userData['birthdate']);
-            $this->commandRepository->updateUser($user);
+            $this->repository->updateUser($user);
         } else {
         }
     }

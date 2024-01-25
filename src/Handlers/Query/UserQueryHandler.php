@@ -3,7 +3,7 @@
 class UserQueryHandler {
     private $repository;
 
-    public function __construct(UserQueryRepository $repository) {
+    public function __construct(UserRepository $repository) {
         $this->repository = $repository;
     }
 
