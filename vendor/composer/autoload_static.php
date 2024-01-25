@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit658cd79d5aa18473f2d4dddbb37efb78
 {
     public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Public\\' => 7,
+        ),
         'C' => 
         array (
             'CQRSAutoload\\' => 13,
@@ -14,6 +18,10 @@ class ComposerStaticInit658cd79d5aa18473f2d4dddbb37efb78
     );
 
     public static $prefixDirsPsr4 = array (
+        'Public\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public',
+        ),
         'CQRSAutoload\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',

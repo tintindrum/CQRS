@@ -1,6 +1,6 @@
 <?php
 
-use Router\Core\Router;
+use CQRSAutoload\Core\Router;
 
 require __DIR__ . '/../vendor/autoload.php';
 

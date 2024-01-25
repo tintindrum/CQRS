@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "CQRSAutoload\\": "src/"
+            "CQRSAutoload\\": "src/",
+            "Public\\": "public/"
         }
     }
 }

@@ -6,5 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Public\\' => array($baseDir . '/public'),
     'CQRSAutoload\\' => array($baseDir . '/src'),
 );

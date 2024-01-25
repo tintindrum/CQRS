@@ -1,34 +1,52 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  apache:
-    image: httpd:latest
-    volumes:
-      - .:/usr/local/apache2/htdocs
-    ports:
-      - "80:80"
-      
-  postgres:
+  db:
     image: postgres:latest
+    container_name: postgres_mvc
+    restart : always
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
     environment:
-      POSTGRES_DB: creuse-ton-parti
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mvc
     volumes:
-        - postgres-data:/var/lib/postgresql/data
-    ports:
-        - "5430:5432"
+      - db_data:/var/lib/postgresql/data
 
-  pgadmin:
+  dbadmin:
     image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+    container_name: pgadmin
     ports:
-        - "8080:80"
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    restart : always
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-        - postgres
+      - php-fpm
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/html
 
 volumes:
-  postgres-data:
-  data: {}
+  db_data:
+  pgadmin_data:
+
+
