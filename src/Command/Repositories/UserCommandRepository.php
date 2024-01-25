@@ -14,7 +14,7 @@ class UserCommandRepository {
         $sql = "INSERT INTO users (username, password, birthdate) VALUES (:username, :password, :birthdate)";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':username', $user->getUsername());
-        $stmt->bindValue(':password', $user->getPassword()); // Envisagez d'utiliser password_hash pour stocker des mots de passe sécurisés
+        $stmt->bindValue(':password', $user->getPassword());
         $stmt->bindValue(':birthdate', $user->getBirthdate());
         $stmt->execute();
     }
@@ -25,7 +25,7 @@ class UserCommandRepository {
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $user->getId());
         $stmt->bindValue(':username', $user->getUsername());
-        $stmt->bindValue(':password', $user->getPassword()); // Envisagez d'utiliser password_hash pour stocker des mots de passe sécurisés
+        $stmt->bindValue(':password', $user->getPassword()); 
         $stmt->bindValue(':birthdate', $user->getBirthdate());
         $stmt->execute();
     }
