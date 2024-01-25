@@ -1,5 +1,7 @@
 <?php 
 
+use User;
+
 class UserCommandHandler {
     private $commandRepository;
     private $queryRepository;

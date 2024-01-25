@@ -9,18 +9,27 @@ class DatabaseConnection {
     private static $instance = null;
 
     private function __construct() {
+        // Constructeur privé pour empêcher la création directe
     }
 
     public static function getInstance() {
         if (self::$instance === null) {
             try {
-                $dsn = "mysql:host=your_host;dbname=your_db;charset=utf8";
+                $host = 'postgres'; 
+                $db = 'exo-cqrs';
+                $user = 'admin';
+                $password = 'admin';
+                $charset = 'utf8';
+
+                $dsn = "pgsql:host=$host;dbname=$db;charset=$charset";
                 $options = [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 ];
-                self::$instance = new PDO($dsn, 'your_username', 'your_password', $options);
+
+                self::$instance = new PDO($dsn, $user, $password, $options);
             } catch (PDOException $e) {
+                // Gérer l'exception ou la relancer
                 throw $e;
             }
         }
