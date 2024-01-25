@@ -1,11 +1,11 @@
 <?php
 
+require '../vendor/autoload.php';
 
-require __DIR__ . '/../vendor/autoload.php';
+use App\Controllers\UserController;
+use App\Core\Router;
 
 
-use CQRSAutoload\Core\Router;
-use Src\Controllers\UserController;
 // Gestion des routes
 $router = new Router();
 

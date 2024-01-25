@@ -1,7 +1,10 @@
 <?php
 
-use User;
-use DatabaseConnection\Core\Database\DatabaseConnection;
+namespace App\Model\Repositories;
+
+use PDO;
+use App\Model\Entities\User;
+use App\Core\Database\DatabaseConnection;
 
 class UserRepository {
     private $pdo;

@@ -1,11 +1,11 @@
 <?php 
 
-namespace Src\Controllers;
-use BaseController;
-use UserQueryHandler;
-use UserCommandHandler;
-use CQRSAutoload\Core\Router;
-require __DIR__ . '/../vendor/autoload.php';
+namespace App\Controllers;
+use App\Core\Router;
+use App\Core\BaseController;
+use App\Handlers\Query\UserQueryHandler;
+use App\Handlers\Command\UserCommandHandler;
+
 
 //[Route("user")]
 class UserController extends BaseController {
@@ -51,10 +51,10 @@ class UserController extends BaseController {
 
 
     public static function registerRoutes(Router $router) {
-        $router->addRoute('user/list', [self::class, 'listUsers']);
-        $router->addRoute('user/add', [self::class, 'createUser']);
-        $router->addRoute('user/update/{id}', [self::class, 'updateUser']);
-        $router->addRoute('user/delete/{id}', [self::class, 'deleteUser']);
+        $router->addRoute('/user/list', [self::class, 'listUsers']);
+        $router->addRoute('/user/add', [self::class, 'createUser']);
+        $router->addRoute('/user/update/{id}', [self::class, 'updateUser']);
+        $router->addRoute('/user/delete/{id}', [self::class, 'deleteUser']);
     }
     
     

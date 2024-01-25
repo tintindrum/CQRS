@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Handlers\Query;
+
+use App\Model\Repositories\UserRepository;
+
+
 class UserQueryHandler {
     private $repository;
 

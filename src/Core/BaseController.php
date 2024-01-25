@@ -1,4 +1,5 @@
 <?php
+namespace App\Core;
 
 class BaseController {
     // Méthode pour rendre une vue

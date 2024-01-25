@@ -1,5 +1,10 @@
 <?php 
 
+namespace App\Handlers\Command;
+
+use App\Model\Entities\User;
+use App\Model\Repositories\UserRepository;
+
 class UserCommandHandler {
     private $repository;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace CQRSAutoload\Core; 
+namespace App\Core; 
 
 class Router {
     private $routes = [];
@@ -9,11 +9,13 @@ class Router {
         $this->routes[$route] = $action;
     }
 
+
+    
     public function dispatch($uri, $method) {
         foreach ($this->routes as $route => $action) {
-                    if ($uri === $route) {
+                    
+                        if ($uri === $route) {
                         list($controllerName, $methodName) = explode('@', $action);
-                        var_dump($controllerName);
         
                       
                         $controllerFullPath = "$controllerName";
@@ -28,7 +30,7 @@ class Router {
                         return;
                     }
                 }
-                
+
                 header("HTTP/1.0 404 Not Found");
                 echo "Page not found";
             }
