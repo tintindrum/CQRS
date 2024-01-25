@@ -25,7 +25,6 @@ class UserCommandHandler {
             $user->setBirthdate($userData['birthdate']);
             $this->commandRepository->updateUser($user);
         } else {
-            // Gérer le cas où l'utilisateur n'est pas trouvé
         }
     }
 
