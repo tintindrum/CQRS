@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User List</title>
+</head>
+<body>
+  <h1>User List</h1>
+  <?php if (isset($_SESSION['success_message'])): ?>
+      <div class="alert alert-success">
+          <?= $_SESSION['success_message']; ?>
+      </div>
+      <?php unset($_SESSION['success_message']); ?>
+  <?php endif; ?>
+
+  <a href="/ajout-user">Créer un Utilisateur</a> 
+
+  <ul>
+    <?php
+    if($User != null or !(isset($User))){
+        foreach ($User as &$value) {?>
+            <li>
+                <strong>Username:</strong> <?= $value->getUsername() ?><br>
+                <strong>Birthdate:</strong> <?= $value->getBirthDate() ?><br>
+                <strong>Password:</strong><?= $value->getPassword() ?><br>
+                <a href="/modifier-user/<?= $value->getId() ?>">Modifier</a> 
+                <a href="/show-user/<?= $value->getId() ?>">Voir plus</a>
+                <a href="/supprimer-user/<?= $value->getId() ?>">supprimer</a>
+
+            </li>
+    <?php }
+    }?>
+  </ul>
+</body>
+</html>
