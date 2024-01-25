@@ -9,7 +9,6 @@ class DatabaseConnection {
     private static $instance = null;
 
     private function __construct() {
-        // Constructeur privé pour empêcher la création directe
     }
 
     public static function getInstance() {

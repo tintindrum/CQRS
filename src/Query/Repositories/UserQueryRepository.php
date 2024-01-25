@@ -30,5 +30,21 @@ class UserQueryRepository {
     }
 
     public function getAllUsers() {
+        $sql = "SELECT * FROM users";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $userObjects = [];
+        foreach ($users as $user) {
+            $userObj = new User();
+            $userObj->setId($user['id']);
+            $userObj->setUsername($user['username']);
+            $userObj->setPassword($user['password']); 
+            $userObj->setBirthdate($user['birthdate']);
+            $userObjects[] = $userObj;
+        }
+        
+        return $userObjects;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Router\Core; 
 
+use Exception;
+
 class Router {
     private $routes = [];
 
@@ -11,8 +13,23 @@ class Router {
 
     public function dispatch($uri, $method) {
         foreach ($this->routes as $route => $action) {
-            
-        }
-    }
+            if ($uri === $route) {
+                list($controllerName, $methodName) = explode('@', $action);
 
+              
+                $controllerFullPath = "$controllerName";
+
+                if (class_exists($controllerFullPath) && method_exists($controllerFullPath, $methodName)) {
+                    $controllerInstance = new $controllerFullPath();
+                    $controllerInstance->$methodName();
+                } else {
+                    header("HTTP/1.0 404 Not Found");
+                    echo "Controller or method not found";
+                }
+                return;
+            }
+        }
+        header("HTTP/1.0 404 Not Found");
+        echo "Page not found";
+    }
 }
