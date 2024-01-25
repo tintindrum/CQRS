@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User <?= $user->getId() ?> Information</title>
+</head>
+<body>
+  <h1>User <?= $user->getId() ?> Information</h1>
+ 
+  <p>
+    <label for="username">Username:</label>
+    <span id="username"><?= $user->getUsername() ?></span>
+  </p>
+  <p>
+    <label for="birthdate">Birthdate:</label>
+    <span id="birthdate"><?= $user->getBirthDate() ?></span>
+  </p>
+  <p>
+    <label for="password">Password:</label>
+    <span id="password"><?= $user->getPassword() ?></span>
+  </p>
+</body>
+</html>
