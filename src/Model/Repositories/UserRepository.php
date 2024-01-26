@@ -39,7 +39,7 @@ class UserRepository {
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Model\Entities\User');
         return $stmt->fetch();
     }
     
@@ -55,7 +55,8 @@ class UserRepository {
     public function getAllUsers() {
         $sql = "SELECT * FROM users";
         $stmt = $this->pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_CLASS, 'User');
+        return $stmt->fetchAll(PDO::FETCH_CLASS, 'App\Model\Entities\User'); 
     }
+    
     
 }

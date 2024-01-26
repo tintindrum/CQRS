@@ -19,4 +19,6 @@ class UserQueryHandler {
     public function handleGetUserByIdQuery($id) {
         return $this->repository->getUserById($id);
     }
+
+    
 }

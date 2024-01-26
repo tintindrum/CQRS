@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use ReflectionClass;
+use ReflectionNamedType;
 use App\Handlers\Query\UserQueryHandler;
 use App\Handlers\Command\UserCommandHandler;
 
@@ -29,7 +30,11 @@ class Router {
                     $constructor = (new ReflectionClass($controllerName))->getConstructor();
                     if ($constructor) {
                         foreach ($constructor->getParameters() as $param) {
-                            $dependency = $param->getClass() ? $param->getClass()->name : null;
+                            $dependency = $param->getType();
+                            if ($dependency instanceof ReflectionNamedType) {
+                                // Utilisez directement la méthode getName() sans vérifier la propriété 'name'
+                                $dependency = $dependency->getName();
+                            }
                             if ($dependency && $this->container->get($dependency)) {
                                 $dependencies[] = $this->container->get($dependency);
                             }
@@ -50,5 +55,11 @@ class Router {
         header("HTTP/1.0 404 Not Found");
         echo "Page not found";
     }
+    
+    
+    
+    
+    
+    
     
 }

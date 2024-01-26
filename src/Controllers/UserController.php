@@ -16,16 +16,16 @@ class UserController extends BaseController {
         $this->commandHandler = $commandHandler;
         $this->queryHandler = $queryHandler;
     }
-//[Route("add")]
+    //[Route("add")]
     public function createUser() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->commandHandler->handleCreateUserCommand($_POST);
             header('Location: /user/list');
             exit();
         }
-        include __DIR__ . "/../views/addUser.phtml";
+        include __DIR__ . "/../../views/addUser.phtml";
     }
-//[Route("update/{id}")]
+    //[Route("update/{id}")]
     public function updateUser($id) {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $this->commandHandler->handleUpdateUserCommand($id, $_POST);
@@ -33,7 +33,7 @@ class UserController extends BaseController {
             exit();
         }
         $user = $this->queryHandler->handleGetUserByIdQuery($id);
-        include "./views/updateUser.phtml";
+        include __DIR__ . "/../../views/updateUser.phtml";
     }
 
     public function deleteUser($id) {
@@ -46,7 +46,7 @@ class UserController extends BaseController {
 
     public function listUsers() {
         $users = $this->queryHandler->handleListUsersQuery();
-        include "./views/listUser.phtml";
+        include __DIR__ . "/../../views/listUser.phtml";
     }
 
 
