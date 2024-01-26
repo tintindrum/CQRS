@@ -16,6 +16,11 @@ class UserController extends BaseController {
         $this->commandHandler = $commandHandler;
         $this->queryHandler = $queryHandler;
     }
+
+
+    public function index() {
+        include __DIR__ . "/../../views/index.phtml";
+    }
     //[Route("add")]
     public function createUser() {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -51,10 +56,12 @@ class UserController extends BaseController {
 
 
     public static function registerRoutes(Router $router) {
+        $router->addRoute('/', [self::class, 'index']);
         $router->addRoute('/user/list', [self::class, 'listUsers']);
         $router->addRoute('/user/add', [self::class, 'createUser']);
         $router->addRoute('/user/update/{id}', [self::class, 'updateUser']);
         $router->addRoute('/user/delete/{id}', [self::class, 'deleteUser']);
+        
     }
     
     
